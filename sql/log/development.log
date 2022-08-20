@@ -1505,3 +1505,202 @@ Processing by ArticlesController#show as HTML
 Completed 200 OK in 11ms (Views: 7.8ms | ActiveRecord: 0.8ms | Allocations: 5495)
 
 
+Started GET "/" for ::1 at 2022-08-20 16:08:04 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (0.1ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 11.1ms | Allocations: 9281)
+  Rendered layout layouts/application.html.erb (Duration: 139.9ms | Allocations: 109469)
+Completed 200 OK in 153ms (Views: 140.1ms | ActiveRecord: 2.8ms | Allocations: 120030)
+
+
+Started GET "/articles/Hello%20Rails" for ::1 at 2022-08-20 16:08:06 +0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"Hello Rails"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 1984)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Article with 'id'=Hello Rails):
+  
+app/controllers/articles_controller.rb:10:in `show'
+Started GET "/articles/Hello%20Rails" for ::1 at 2022-08-20 16:11:22 +0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"Hello Rails"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`name` = 'Hello Rails' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 1.4ms | Allocations: 4389)
+
+
+  
+ActiveRecord::StatementInvalid (Mysql2::Error: Unknown column 'articles.name' in 'where clause'):
+  
+app/controllers/articles_controller.rb:10:in `show'
+Started GET "/articles/Hello%20Rails" for ::1 at 2022-08-20 16:11:36 +0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"Hello Rails"}
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'Hello Rails' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 29)
+  Rendered comments/_form.html.erb (Duration: 17.3ms | Allocations: 12192)
+  Rendered articles/show.html.erb within layouts/application (Duration: 32.9ms | Allocations: 22985)
+  Rendered layout layouts/application.html.erb (Duration: 42.4ms | Allocations: 36710)
+Completed 200 OK in 57ms (Views: 41.4ms | ActiveRecord: 4.4ms | Allocations: 42389)
+
+
+Started GET "/" for ::1 at 2022-08-20 16:11:39 +0300
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1460)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 3819)
+Completed 200 OK in 11ms (Views: 9.6ms | ActiveRecord: 0.8ms | Allocations: 4209)
+
+
+Started GET "/articles/Wow" for ::1 at 2022-08-20 16:11:40 +0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"Wow"}
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'Wow' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 1.1ms | Allocations: 499)
+  Rendered comments/_form.html.erb (Duration: 1.9ms | Allocations: 1441)
+  Rendered articles/show.html.erb within layouts/application (Duration: 5.1ms | Allocations: 3081)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 5262)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.6ms | Allocations: 6082)
+
+
+Started GET "/articles/new" for ::1 at 2022-08-20 16:17:51 +0300
+Processing by ArticlesController#new as HTML
+Filter chain halted as #<Proc:0x00007fc1ccf72110 /usr/share/rvm/gems/ruby-3.0.2/gems/actionpack-7.0.3.1/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 0ms (Allocations: 122)
+
+
+Started GET "/" for ::1 at 2022-08-20 16:17:58 +0300
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1419)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 3779)
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 1.0ms | Allocations: 4110)
+
+
+Started GET "/articles/new" for ::1 at 2022-08-20 16:17:59 +0300
+Processing by ArticlesController#new as HTML
+Filter chain halted as #<Proc:0x00007fc1ccf72110 /usr/share/rvm/gems/ruby-3.0.2/gems/actionpack-7.0.3.1/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 104)
+
+
+Started GET "/articles/new" for ::1 at 2022-08-20 16:18:12 +0300
+Processing by ArticlesController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/new.html.erb within layouts/application
+  Rendered articles/_form.html.erb (Duration: 2.3ms | Allocations: 1797)
+  Rendered articles/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 2052)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 4241)
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.0ms | Allocations: 4682)
+
+
+Started POST "/articles" for ::1 at 2022-08-20 16:18:52 +0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"New test Article", "body"=>"This is a test article for friendly URL", "status"=>"public"}, "commit"=>"Create Article"}
+Filter chain halted as #<Proc:0x00007fc1ccf72110 /usr/share/rvm/gems/ruby-3.0.2/gems/actionpack-7.0.3.1/lib/action_controller/metal/http_authentication.rb:79> rendered or redirected
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 429)
+
+
+Started POST "/articles" for ::1 at 2022-08-20 16:18:52 +0300
+Processing by ArticlesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "article"=>{"title"=>"New test Article", "body"=>"This is a test article for friendly URL", "status"=>"public"}, "commit"=>"Create Article"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mArticle Create (0.4ms)[0m  [1m[32mINSERT INTO `articles` (`title`, `body`, `created_at`, `updated_at`, `status`, `slug`) VALUES ('New test Article', 'This is a test article for friendly URL', '2022-08-20 13:18:52.406546', '2022-08-20 13:18:52.406546', 'public', NULL)[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/articles_controller.rb:20:in `create'
+Redirected to http://[::1]:3000/articles/New%20test%20Article
+Completed 302 Found in 33ms (ActiveRecord: 2.8ms | Allocations: 4091)
+
+
+Started GET "/articles/New%20test%20Article" for ::1 at 2022-08-20 16:18:52 +0300
+Processing by ArticlesController#show as TURBO_STREAM
+  Parameters: {"id"=>"New test Article"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'New test Article' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 3[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 15)
+  Rendered comments/_form.html.erb (Duration: 1.6ms | Allocations: 1469)
+  Rendered articles/show.html.erb within layouts/application (Duration: 3.2ms | Allocations: 2544)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 4834)
+Completed 200 OK in 24ms (Views: 5.0ms | ActiveRecord: 0.6ms | Allocations: 5750)
+
+
+Started GET "/" for ::1 at 2022-08-20 16:20:02 +0300
+Processing by ArticlesController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `articles` WHERE `articles`.`status` = 'public'[0m
+  ↳ app/models/concerns/visible.rb:12:in `public_count'
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT `articles`.* FROM `articles`[0m
+  ↳ app/views/articles/index.html.erb:6
+  Rendered articles/index.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1362)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 3718)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.5ms | Allocations: 4055)
+
+
+Started GET "/articles/Hello%20Rails" for ::1 at 2022-08-20 16:20:03 +0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"Hello Rails"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'Hello Rails' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 1[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 2.0ms | Allocations: 1383)
+  Rendered articles/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 2311)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 4492)
+Completed 200 OK in 7ms (Views: 5.7ms | ActiveRecord: 0.5ms | Allocations: 5295)
+
+
+Started GET "/articles/Wow" for ::1 at 2022-08-20 16:20:08 +0300
+Processing by ArticlesController#show as HTML
+  Parameters: {"id"=>"Wow"}
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT `articles`.* FROM `articles` WHERE `articles`.`title` = 'Wow' LIMIT 1[0m
+  ↳ app/controllers/articles_controller.rb:10:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering articles/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT `comments`.* FROM `comments` WHERE `comments`.`article_id` = 2[0m
+  ↳ app/views/articles/show.html.erb:14
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.3ms | Allocations: 182)
+  Rendered comments/_form.html.erb (Duration: 1.7ms | Allocations: 1392)
+  Rendered articles/show.html.erb within layouts/application (Duration: 3.9ms | Allocations: 2531)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 4712)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 0.5ms | Allocations: 5516)
+
+
